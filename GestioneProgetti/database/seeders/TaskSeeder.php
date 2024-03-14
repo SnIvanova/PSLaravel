@@ -17,8 +17,13 @@ class TaskSeeder extends Seeder
         $progects = Progect::all();
 
         
-        $progects->each(function ($progect) {
-           
+        $progects->each(function ($user, $progect ) {
+
+            Task::factory()->count(3)->create([
+                'user_id' => $user->id,
+            ]);
+
+
             Task::factory()->count(3)->create([
                 'progect_id' => $progect->id,
             ]);

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Progect;
-use App\Http\Requests\StoreProgectRequest;
-use App\Http\Requests\UpdateProgectRequest;
+use App\Models\Project;
+use App\Http\Requests\StoreProjectRequest;
+use App\Http\Requests\UpdateProjectRequest;
 
-class ProgectController extends Controller
+class ProjectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProgectController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProgectRequest $request)
+    public function store(StoreProjectRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ProgectController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Progect $progect)
+    public function show(Project $project)
     {
         //
     }
@@ -43,7 +43,7 @@ class ProgectController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Progect $progect)
+    public function edit(Project $project)
     {
         //
     }
@@ -51,7 +51,7 @@ class ProgectController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProgectRequest $request, Progect $progect)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
         //
     }
@@ -59,7 +59,7 @@ class ProgectController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Progect $progect)
+    public function destroy(Project $project)
     {
         //
     }
