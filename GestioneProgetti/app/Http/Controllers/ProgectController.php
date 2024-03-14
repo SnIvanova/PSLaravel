@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Attivita;
-use App\Http\Requests\StoreAttivitaRequest;
-use App\Http\Requests\UpdateAttivitaRequest;
+use App\Models\Progect;
+use App\Http\Requests\StoreProgectRequest;
+use App\Http\Requests\UpdateProgectRequest;
 
-class AttivitaController extends Controller
+class ProgectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class AttivitaController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAttivitaRequest $request)
+    public function store(StoreProgectRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class AttivitaController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Attivita $attivita)
+    public function show(Progect $progect)
     {
         //
     }
@@ -43,7 +43,7 @@ class AttivitaController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Attivita $attivita)
+    public function edit(Progect $progect)
     {
         //
     }
@@ -51,7 +51,7 @@ class AttivitaController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAttivitaRequest $request, Attivita $attivita)
+    public function update(UpdateProgectRequest $request, Progect $progect)
     {
         //
     }
@@ -59,7 +59,7 @@ class AttivitaController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Attivita $attivita)
+    public function destroy(Progect $progect)
     {
         //
     }

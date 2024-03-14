@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Progetto;
-use App\Http\Requests\StoreProgettoRequest;
-use App\Http\Requests\UpdateProgettoRequest;
+use App\Models\Task;
+use App\Http\Requests\StoreTaskRequest;
+use App\Http\Requests\UpdateTaskRequest;
 
-class ProgettoController extends Controller
+class TaskController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +27,7 @@ class ProgettoController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProgettoRequest $request)
+    public function store(StoreTaskRequest $request)
     {
         //
     }
@@ -35,7 +35,7 @@ class ProgettoController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Progetto $progetto)
+    public function show(Task $task)
     {
         //
     }
@@ -43,7 +43,7 @@ class ProgettoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Progetto $progetto)
+    public function edit(Task $task)
     {
         //
     }
@@ -51,7 +51,7 @@ class ProgettoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProgettoRequest $request, Progetto $progetto)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
         //
     }
@@ -59,7 +59,7 @@ class ProgettoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Progetto $progetto)
+    public function destroy(Task $task)
     {
         //
     }
