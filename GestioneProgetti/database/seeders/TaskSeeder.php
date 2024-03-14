@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Progect;
+use App\Models\Project;
 use App\Models\Task;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
@@ -14,19 +14,22 @@ class TaskSeeder extends Seeder
      */
     public function run(): void
     {
-        $progects = Progect::all();
-
+     
+        $projects = Project::all();
         
-        $progects->each(function ($user, $progect ) {
+        $projects->each(function ( $project ) {
 
-            Task::factory()->count(3)->create([
-                'user_id' => $user->id,
-            ]);
-
-
-            Task::factory()->count(3)->create([
-                'progect_id' => $progect->id,
-            ]);
+       
+            if (Project::count() === 0) {
+                
+                Project::factory()->count(3)->create();
+            }
+    
+          
+            Project::all()->each(function ($project) {
+                Task::factory()->count(3)->create([
+                    'project_id' => $project->id,
+                ]);
+            });
         });
-    }
-}
+    }}
