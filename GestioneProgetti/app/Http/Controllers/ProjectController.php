@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ProjectController extends Controller
 {public function welcome()
@@ -16,8 +17,14 @@ class ProjectController extends Controller
 
     public function index()
     {
-        $projects = Project::all();
-        return view('projects.index', compact('projects'));
+        //return Project::get();
+        //return Auth::user();
+        $projects = Project::with('tasks')
+                        ->where('user_id', '=', Auth::user()->id)
+                        //->paginate(5);
+                        ->get();
+        //return $projects;
+        return view('projects', ['projects' => $projects]);
     }
 
     public function create()
@@ -32,7 +39,9 @@ class ProjectController extends Controller
 
     public function show(Project $project)
     {
-        return view('projects.show', compact('project'));
+        //return view('project_detail', ['project' => $project]);
+        //return $project->load('activities');
+        return view('project_detail', ['project' => $project->load('tasks')]);
     }
 
     public function edit(Project $project)

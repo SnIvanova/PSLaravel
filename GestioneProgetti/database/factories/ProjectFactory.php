@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -16,9 +17,21 @@ class ProjectFactory extends Factory
      */
     public function definition(): array
     {
+
+        $languages = ['Javascript/Node', 'Laravel/Blade'];
+        $frameworks = ['React', 'Vue', 'Bootstrap'];
+        $databases = ['MySQL', 'PostgreSQL'];
+        $allTechnologies = array_merge($languages, $frameworks, $databases);
         return [
             'name' => fake()->company(),
-            
+            'description' => fake()->text(200),
+            'language' => fake()->randomElement($allTechnologies),
+            'user_id' => User::get()->random()->id,
         ];
     }
 }
+
+
+
+
+

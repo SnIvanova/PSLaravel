@@ -15,21 +15,5 @@ class TaskSeeder extends Seeder
     public function run(): void
     {
      
-        $projects = Project::all();
-        
-        $projects->each(function ( $project ) {
-
-       
-            if (Project::count() === 0) {
-                
-                Project::factory()->count(3)->create();
-            }
-    
-          
-            Project::all()->each(function ($project) {
-                Task::factory()->count(3)->create([
-                    'project_id' => $project->id,
-                ]);
-            });
-        });
+        Task::factory(5)->create();
     }}

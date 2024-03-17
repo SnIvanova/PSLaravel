@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Models\Task;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Foundation\Testing\WithFaker;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Task>
@@ -21,8 +22,9 @@ class TaskFactory extends Factory
     {
         /* $taskName = Task::pluck('name')->random(); */
         return [
-            'name' => fake()->text(),
-            'user_id' => User::get()->random()->id,
+            'name' => fake()->text(30),
+            'task_description' => fake()->text(200),
+            
             'project_id' => Project::get()->random()->id
         ];
     }
