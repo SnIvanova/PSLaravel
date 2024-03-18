@@ -9,8 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Task extends Model
 {
     use HasFactory;
-    /* public function project()
-    {
-        return $this->belongsTo(Project::class); 
-    }*/
+    public function tasks(): HasMany {
+        return $this->hasMany(Task::class);
+    }
 }

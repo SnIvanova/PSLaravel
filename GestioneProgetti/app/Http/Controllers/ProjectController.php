@@ -17,14 +17,11 @@ class ProjectController extends Controller
 
     public function index()
     {
-        //return Project::get();
-        //return Auth::user();
         $projects = Project::with('tasks')
                         ->where('user_id', '=', Auth::user()->id)
                         //->paginate(5);
                         ->get();
-        //return $projects;
-        return view('projects', ['projects' => $projects]);
+                        return view('projects', compact('projects'));
     }
 
     public function create()
@@ -32,15 +29,24 @@ class ProjectController extends Controller
         return view('projects.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProjectRequest $request)
     {
-        // Validation and store logic
+        $validatedData = $request->validated();
+        
+        $project = new Project();
+        $project->name = $validatedData['name'];
+        $project->description = $validatedData['description'];
+        $project->language = $validatedData['language'];
+        $project->user_id = Auth::id();
+        $project->save();
+
+        return redirect()->route('projects')->with('success', 'Project created successfully!');
     }
 
     public function show(Project $project)
     {
         //return view('project_detail', ['project' => $project]);
-        //return $project->load('activities');
+        //return $project->load('task');
         return view('project_detail', ['project' => $project->load('tasks')]);
     }
 
@@ -49,13 +55,20 @@ class ProjectController extends Controller
         return view('projects.edit', compact('project'));
     }
 
-    public function update(Request $request, Project $project)
+    public function update(UpdateProjectRequest $request, Project $project)
     {
-        // Validation and update logic
+        $validatedData = $request->validated();
+        
+        $project->update($validatedData);
+        
+        return redirect()->route('projects')->with('success', 'Project updated successfully!');
     }
+
 
     public function destroy(Project $project)
     {
-        // Delete logic
+        $project->delete();
+
+        return redirect()->route('projects')->with('success', 'Project deleted successfully!');
     }
 }
