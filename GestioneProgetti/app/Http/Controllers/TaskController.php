@@ -29,7 +29,16 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            
+        ]);
+
+        $task = new Task();
+        $task->name = $request->name;
+        $task->project_id = $request->project_id; 
+        $task->save();
+        return redirect()->back()->with('success', 'Task created successfully!');
     }
 
     /**

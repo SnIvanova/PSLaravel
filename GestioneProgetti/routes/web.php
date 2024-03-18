@@ -44,6 +44,7 @@ Route::middleware(['web', 'auth'])->group(function () {
     Route::get('/projects/{project}/edit', [ProjectController::class, 'edit'])->name('projects.edit');
     Route::put('/projects/{project}', [ProjectController::class, 'update'])->name('projects.update');
     Route::get('/tasks/{task}', [TaskController::class, 'show'])->name('tasks.show');
+    Route::post('/tasks', [TaskController::class, 'store'])->name('tasks.store');
 }); 
 
 require __DIR__.'/auth.php';

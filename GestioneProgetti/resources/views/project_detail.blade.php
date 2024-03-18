@@ -16,6 +16,9 @@
                             <p class="card-text"><strong>Language: </strong>{{$project->language}}</p>
                             <p class="card-text"><strong>State: </strong>{{$project->state}}</p>
                             <p class="card-text"><strong>Created: </strong>{{$project->created_at}}</p>
+                            <button type="button" class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#createTaskModal">
+                                Create Task
+                            </button>
                         </div>
                         <div class="card-body my-3">
                             <h2 class="card-title">{{ __('Tasks') }}</h2>
@@ -52,6 +55,32 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </div>
+
+     <!-- Create Task Modal -->
+     <div class="modal fade" id="createTaskModal" tabindex="-1" aria-labelledby="createTaskModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="{{ route('tasks.store') }}" method="POST">
+                    @csrf
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="createTaskModalLabel">Create New Task</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="mb-3">
+                            <label for="task_name" class="form-label">Task Name</label>
+                            <input type="text" class="form-control" id="task_name" name="task_name" required>
+                        </div>
+                        
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary text-dark" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary text-success">Create Task</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
