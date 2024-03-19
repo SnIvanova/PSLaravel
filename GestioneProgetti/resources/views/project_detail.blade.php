@@ -73,7 +73,7 @@
                             <input type="hidden" name="project_id" value="{{$task->project_id}}">
                         </div>
                         <div class="mb-3">
-                            <input type="text" class="form-control" name="description" placeholder="Task description" value="{{$task->description}}">
+                            <input type="text" class="form-control" name="task_description" placeholder="Task description" value="{{$task->task_description}}">
                         </div>
                     </div>
                     <div class="modal-footer">
