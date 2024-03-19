@@ -39,12 +39,14 @@
                                     <p class="text-gray-800">{{$task->name}}</p>
                                     <p class="text-sm text-gray-500">Created at: {{$task->created_at->format('M d, Y')}}</p>
                                 </div>
+                                <div>
                                 <form action="{{ route('tasks.destroy', $task->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
                                 </form>
-                                <div>
+                                
+                                
                                     <a href="{{ route('tasks.show', $task->id) }}" class="btn btn-sm btn-outline-info text-black">Details</a>
                                 </div>
                             </li>
