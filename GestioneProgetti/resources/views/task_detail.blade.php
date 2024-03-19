@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     <div class="card-body my-3">
                             <h1 class="card-title"><strong>Tasks Title: </strong>{{$task->name}}</h1>
-                            <p class="card-text"><strong>Description: </strong>{{$task->description}}</p>
+                            <p class="card-text"><strong>Description: </strong>{{$task->task_description}}</p>
                             <p class="card-text"><strong>Created: </strong>{{$task->created_at}}</p>
                         </div>
 
