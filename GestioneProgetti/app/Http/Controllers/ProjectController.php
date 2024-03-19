@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,16 +32,16 @@ class ProjectController extends Controller
 
     public function store(StoreProjectRequest $request)
     {
-        $validatedData = $request->validated();
+        $data = $request->only(['name', 'description', 'language']);
+        $data['created_at'] = Carbon::now();
+        /* $data->user_id = Auth::id(); */
+        Project::create($data);
+        return redirect('/projects/'.$request->project_id)->with('success', 'Project created successfully!');
         
-        $project = new Project();
-        $project->name = $validatedData['name'];
-        $project->description = $validatedData['description'];
-        $project->language = $validatedData['language'];
-        $project->user_id = Auth::id();
-        $project->save();
+        
+    
 
-        return redirect()->route('projects')->with('success', 'Project created successfully!');
+
     }
 
     public function show(Project $project)
@@ -52,16 +53,20 @@ class ProjectController extends Controller
 
     public function edit(Project $project)
     {
-        return view('projects.edit', compact('project'));
+        return view('projects.edit', ['project' => $project]);
     }
 
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        $validatedData = $request->validated();
-        
-        $project->update($validatedData);
-        
-        return redirect()->route('projects')->with('success', 'Project updated successfully!');
+        $project['name'] = $request->name;
+        $project['description'] = $request->description;
+        $project['language'] = $request->language;
+
+        $project['updated_at'] = Carbon::now();
+
+        $project->update();
+        return redirect('/projects')->with('success', 'Project updated successfully!');
+
     }
 
 

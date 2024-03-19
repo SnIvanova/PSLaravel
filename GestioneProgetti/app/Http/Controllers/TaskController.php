@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Task;
 use App\Http\Requests\StoreTaskRequest;
 use App\Http\Requests\UpdateTaskRequest;
+use Carbon\Carbon;
 
 class TaskController extends Controller
 {
@@ -13,15 +14,15 @@ class TaskController extends Controller
      */
     public function index()
     {
-        //
+        return 'TaskController index';
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(StoreTaskRequest $request)
     {
-        //
+        return view('create_task', ['project_id' => $request->id]);
     }
 
     /**
@@ -29,16 +30,11 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $validatedData = $request->validate([
-            'name' => 'required|string|max:255',
-            
-        ]);
+        $data = $request->only(['title', 'description',  'project_id']);
+        $data['created_at'] = Carbon::now();
 
-        $task = new Task();
-        $task->name = $request->name;
-        $task->project_id = $request->project_id; 
-        $task->save();
-        return redirect()->back()->with('success', 'Task created successfully!');
+        Task::create($data);
+        return redirect('/projects/'.$request->project_id);
     }
 
     /**
@@ -54,7 +50,7 @@ class TaskController extends Controller
      */
     public function edit(Task $task)
     {
-        //
+        return view('edit_task', ['task' => $task]);
     }
 
     /**
@@ -62,7 +58,12 @@ class TaskController extends Controller
      */
     public function update(UpdateTaskRequest $request, Task $task)
     {
-        //
+        $task['title'] = $request->title;
+        $task['description'] = $request->description;
+        $task['updated_at'] = Carbon::now();
+
+        $task->update();
+        return redirect('/projects/'.$request->project_id);
     }
 
     /**
@@ -70,6 +71,7 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+        $task->delete();
+        return redirect('/projects/'.$task->project_id);
     }
 }
