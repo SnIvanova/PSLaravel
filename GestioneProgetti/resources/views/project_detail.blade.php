@@ -67,6 +67,13 @@
                         <div class="mb-3">
                             <label for="task_name" class="form-label">Task Name</label>
                             <input type="text" class="form-control" id="task_name" name="task_name" required>
+                            
+                        </div>
+                        <div class="mb-3">
+                            <input type="hidden" name="project_id" value="{{$task->project_id}}">
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" name="description" placeholder="Task description" value="{{$task->description}}">
                         </div>
                     </div>
                     <div class="modal-footer">

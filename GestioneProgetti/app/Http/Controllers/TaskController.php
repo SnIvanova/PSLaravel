@@ -30,7 +30,7 @@ class TaskController extends Controller
      */
     public function store(StoreTaskRequest $request)
     {
-        $data = $request->only(['title', 'description',  'project_id']);
+        $data = $request->only(['title', 'task_description',  'project_id']);
         $data['created_at'] = Carbon::now();
 
         Task::create($data);
